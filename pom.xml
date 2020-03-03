@@ -4,7 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>per.zzch.gmall</groupId>
     <artifactId>gmall-parent</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>gmall-mbg</module>
+        <module>gmall-api</module>
+        <module>gmall-common</module>
+    </modules>
     <name>gmall-parent</name>
     <description>parent</description>
 
