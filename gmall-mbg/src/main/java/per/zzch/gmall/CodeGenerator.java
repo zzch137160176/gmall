@@ -19,7 +19,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
 
-        String moduleName = "sms";
+        String moduleName = "pms";
 
         // 1、创建代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -36,6 +36,7 @@ public class CodeGenerator {
         gc.setDateType(DateType.ONLY_DATE);//定义生成的实体类中日期类型
         gc.setSwagger2(true);//开启Swagger2模式
         gc.setBaseColumnList(true);
+        gc.setBaseResultMap(true);// 生成每个xml的baseResultMap
 
         mpg.setGlobalConfig(gc);
 

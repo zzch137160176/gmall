@@ -2,6 +2,7 @@ package per.zzch.gmall.ums.service;
 
 import per.zzch.gmall.ums.entity.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import per.zzch.gmall.vo.product.UmsAdminParam;
 
 /**
  * <p>
@@ -13,4 +14,25 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AdminService extends IService<Admin> {
 
+    /**
+     * 用户登录
+     * @param username
+     * @param password
+     * @return
+     */
+    Admin login(String username, String password);
+
+    /**
+     * 获取用户信息
+     * @param userName
+     * @return
+     */
+    Admin getUserInfo(String userName);
+
+    /**
+     * 用户注册
+     * @param umsAdminParam
+     * @return
+     */
+    Admin register(UmsAdminParam umsAdminParam);
 }
