@@ -7,4 +7,8 @@
         id, product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type, related_status, hand_add_status, type
     </sql>
 
+    <select id="selectAttrInfo" resultType="per.zzch.gmall.vo.product.ProductAttrInfo">
+        select * from pms_product_category_attribute_relation where product_category_id=#{productCategoryId}
+    </select>
+
 </mapper>

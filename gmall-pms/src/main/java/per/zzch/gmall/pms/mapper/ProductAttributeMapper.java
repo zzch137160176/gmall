@@ -2,6 +2,7 @@ package per.zzch.gmall.pms.mapper;
 
 import per.zzch.gmall.pms.entity.ProductAttribute;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import per.zzch.gmall.vo.product.ProductAttrInfo;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ProductAttributeMapper extends BaseMapper<ProductAttribute> {
 
+    ProductAttrInfo selectAttrInfo(Long productCategoryId);
 }
