@@ -2,9 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="per.zzch.gmall.pms.mapper.ProductAttributeCategoryMapper">
 
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="per.zzch.gmall.pms.entity.ProductAttributeCategory">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="attribute_count" property="attributeCount"/>
+        <result column="param_count" property="paramCount"/>
+    </resultMap>
+
+    <resultMap id="ExtendResultMap" type="per.zzch.gmall.vo.product.PmsProductAttributeCategoryItem"
+               extends="BaseResultMap">
+        <collection property="productAttributeList" select="listAttr" column="id"/>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, attribute_count, param_count
     </sql>
+
+    <!--    List<ProductAttributeCategory> listAttributeCategoryWithAttr();-->
+
+    <select id="listAttributeCategoryWithAttr" resultMap="ExtendResultMap">
+        select * from pms_product_attribute_category
+    </select>
+
+    <select id="listAttr" resultType="per.zzch.gmall.pms.entity.ProductAttribute">
+        select * from pms_product_attribute where product_attribute_category_id=#{id} and type=1
+    </select>
 
 </mapper>

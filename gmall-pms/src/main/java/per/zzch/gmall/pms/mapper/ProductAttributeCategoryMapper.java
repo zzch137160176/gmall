@@ -1,7 +1,11 @@
 package per.zzch.gmall.pms.mapper;
 
+import per.zzch.gmall.pms.entity.ProductAttribute;
 import per.zzch.gmall.pms.entity.ProductAttributeCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import per.zzch.gmall.vo.product.PmsProductAttributeCategoryItem;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ProductAttributeCategoryMapper extends BaseMapper<ProductAttributeCategory> {
 
+    List<PmsProductAttributeCategoryItem> listAttributeCategoryWithAttr();
+
+    List<ProductAttribute> listAttr(Integer id);
 }
