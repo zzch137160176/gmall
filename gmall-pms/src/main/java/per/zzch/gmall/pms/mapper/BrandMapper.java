@@ -3,6 +3,8 @@ package per.zzch.gmall.pms.mapper;
 import per.zzch.gmall.pms.entity.Brand;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 品牌表 Mapper 接口
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface BrandMapper extends BaseMapper<Brand> {
 
+    int updateShowStatus(List<Long> ids, Integer showStatus);
+
+    int updateFactoryStatus(List<Long> ids, Integer factoryStatus);
 }

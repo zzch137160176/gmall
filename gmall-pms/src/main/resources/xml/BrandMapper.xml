@@ -7,4 +7,18 @@
         id, name, first_letter, sort, factory_status, show_status, product_count, product_comment_count, logo, big_pic, brand_story
     </sql>
 
+    <update id="updateShowStatus" parameterType="java.util.List">
+        update pms_brand set show_status=#{showStatus} where id in
+        <foreach collection="ids" item="id" open="(" close=")" index="index" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateFactoryStatus" parameterType="java.util.List">
+        update pms_brand set factory_status=#{factoryStatus} where id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
 </mapper>

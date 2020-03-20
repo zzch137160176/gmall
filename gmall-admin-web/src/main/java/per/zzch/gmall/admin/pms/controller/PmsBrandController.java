@@ -6,11 +6,13 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import per.zzch.gmall.pms.entity.Brand;
 import per.zzch.gmall.vo.PageInfoVo;
 import per.zzch.gmall.vo.product.PmsBrandParam;
 import per.zzch.gmall.pms.service.BrandService;
 import per.zzch.gmall.to.CommonResult;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -28,39 +30,38 @@ public class PmsBrandController {
     @GetMapping(value = "/listAll")
     public Object getList() {
 
-        //TODO 获取全部品牌列表  brandService.listAll()
-        return new CommonResult().success(null);
+        List<Brand> list = brandService.list();
+
+        return new CommonResult().success(list);
     }
 
     @ApiOperation(value = "添加品牌")
     @PostMapping(value = "/create")
-    public Object create(@Validated @RequestBody PmsBrandParam pmsBrand, BindingResult result) {
-        CommonResult commonResult = new CommonResult();
-        //TODO 添加品牌
+    public Object create(@Valid @RequestBody PmsBrandParam pmsBrandParam, BindingResult bindingResult) {
 
-        return commonResult;
+        boolean result =  brandService.createBrand(pmsBrandParam);
+
+        return new CommonResult().success(result);
     }
 
     @ApiOperation(value = "更新品牌")
     @PostMapping(value = "/update/{id}")
     public Object update(@PathVariable("id") Long id,
                               @Validated @RequestBody PmsBrandParam pmsBrandParam,
-                              BindingResult result) {
-        CommonResult commonResult = new CommonResult();
+                              BindingResult bindingResult) {
 
-        //TODO 更新品牌
+        boolean result =  brandService.updateBrand(id, pmsBrandParam);
 
-        return commonResult;
+        return new CommonResult().success(result);
     }
 
     @ApiOperation(value = "删除品牌")
     @GetMapping(value = "/delete/{id}")
     public Object delete(@PathVariable("id") Long id) {
-        CommonResult commonResult = new CommonResult();
 
-        //TODO 删除品牌
+        boolean result = brandService.removeById(id);
 
-        return commonResult;
+        return new CommonResult().success(result);
     }
 
     @ApiOperation(value = "根据品牌名称分页获取品牌列表")
@@ -79,20 +80,20 @@ public class PmsBrandController {
     @GetMapping(value = "/{id}")
     public Object getItem(@PathVariable("id") Long id) {
         CommonResult commonResult = new CommonResult();
-        //TODO 根据编号查询品牌信息
 
+        Brand brand = brandService.getById(id);
 
-        return commonResult;
+        return commonResult.success(brand);
     }
 
     @ApiOperation(value = "批量删除品牌")
     @PostMapping(value = "/delete/batch")
     public Object deleteBatch(@RequestParam("ids") List<Long> ids) {
         CommonResult commonResult = new CommonResult();
-        //TODO 批量删除品牌
 
+        boolean result = brandService.removeByIds(ids);
 
-        return commonResult;
+        return commonResult.success(result);
     }
 
     @ApiOperation(value = "批量更新显示状态")
@@ -100,10 +101,10 @@ public class PmsBrandController {
     public Object updateShowStatus(@RequestParam("ids") List<Long> ids,
                                    @RequestParam("showStatus") Integer showStatus) {
         CommonResult commonResult = new CommonResult();
-        //TODO 批量更新显示状态
 
+        boolean result = brandService.updateShowStatus(ids, showStatus);
 
-        return commonResult;
+        return commonResult.success(result);
     }
 
     @ApiOperation(value = "批量更新厂家制造商状态")
@@ -111,9 +112,9 @@ public class PmsBrandController {
     public Object updateFactoryStatus(@RequestParam("ids") List<Long> ids,
                                       @RequestParam("factoryStatus") Integer factoryStatus) {
         CommonResult commonResult = new CommonResult();
-        //TODO 批量更新厂家制造商状态
 
+        boolean result = brandService.updateFactoryStatus(ids, factoryStatus);
 
-        return commonResult;
+        return commonResult.success(result);
     }
 }

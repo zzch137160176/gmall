@@ -34,14 +34,16 @@
 <!--    Integer updateNavStatus(List<Long> ids, Integer navStatus);-->
 
     <update id="updateNavStatus" parameterType="java.util.List">
-        <foreach collection="ids" item="id" index="index" open="" close="" separator=";">
-            update pms_product_category set nav_status=#{navStatus} where id = #{id}
+        update pms_product_category set nav_status=#{navStatus} where id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
         </foreach>
     </update>
 
     <update id="updateShowStatus" parameterType="java.util.List">
-        <foreach collection="ids" item="id" index="index" open="" close="" separator=";">
-            update pms_product_category set show_status=#{showStatus} where id = #{id}
+        update pms_product_category set show_status=#{showStatus} where id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
         </foreach>
     </update>
 

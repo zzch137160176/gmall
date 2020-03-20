@@ -12,6 +12,9 @@ import per.zzch.gmall.pms.entity.Brand;
 import per.zzch.gmall.pms.mapper.BrandMapper;
 import per.zzch.gmall.pms.service.BrandService;
 import per.zzch.gmall.vo.PageInfoVo;
+import per.zzch.gmall.vo.product.PmsBrandParam;
+
+import java.util.List;
 
 /**
  * <p>
@@ -40,5 +43,59 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
 
         return new PageInfoVo(page.getTotal(), page.getPages(), pageSize.longValue(), page.getRecords(), pageNum.longValue());
 
+    }
+
+    @Override
+    public boolean createBrand(PmsBrandParam pmsBrandParam) {
+
+        Brand brand = new Brand();
+
+        brand.setName(pmsBrandParam.getName());
+        brand.setBigPic(pmsBrandParam.getBigPic());
+        brand.setBrandStory(pmsBrandParam.getBrandStory());
+        brand.setFactoryStatus(pmsBrandParam.getFactoryStatus());
+        brand.setFirstLetter(pmsBrandParam.getFirstLetter());
+        brand.setLogo(pmsBrandParam.getLogo());
+        brand.setShowStatus(pmsBrandParam.getShowStatus());
+        brand.setSort(pmsBrandParam.getSort());
+
+        int insert = brandMapper.insert(brand);
+
+        return insert > 0;
+    }
+
+    @Override
+    public boolean updateShowStatus(List<Long> ids, Integer showStatus) {
+
+        int update = brandMapper.updateShowStatus(ids, showStatus);
+
+        return update > 0;
+    }
+
+    @Override
+    public boolean updateFactoryStatus(List<Long> ids, Integer factoryStatus) {
+
+        int update = brandMapper.updateFactoryStatus(ids, factoryStatus);
+
+        return update > 0;
+    }
+
+    @Override
+    public boolean updateBrand(Long id, PmsBrandParam pmsBrandParam) {
+
+        Brand brand = brandMapper.selectById(id);
+
+        brand.setName(pmsBrandParam.getName());
+        brand.setBigPic(pmsBrandParam.getBigPic());
+        brand.setBrandStory(pmsBrandParam.getBrandStory());
+        brand.setFactoryStatus(pmsBrandParam.getFactoryStatus());
+        brand.setFirstLetter(pmsBrandParam.getFirstLetter());
+        brand.setLogo(pmsBrandParam.getLogo());
+        brand.setShowStatus(pmsBrandParam.getShowStatus());
+        brand.setSort(pmsBrandParam.getSort());
+
+        int update = brandMapper.updateById(brand);
+
+        return update > 0;
     }
 }
