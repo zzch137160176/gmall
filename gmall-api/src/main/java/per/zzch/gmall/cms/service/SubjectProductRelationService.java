@@ -1,7 +1,9 @@
 package per.zzch.gmall.cms.service;
 
-import per.zzch.gmall.cms.entity.SubjectProductRelation;
 import com.baomidou.mybatisplus.extension.service.IService;
+import per.zzch.gmall.cms.entity.SubjectProductRelation;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SubjectProductRelationService extends IService<SubjectProductRelation> {
 
+    /**
+     * 根据产品id获取关系
+     *
+     * @param id
+     * @return
+     */
+    List<SubjectProductRelation> listByProductId(Long id);
 }

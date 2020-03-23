@@ -15,10 +15,10 @@ import per.zzch.gmall.to.OssPolicyResult;
 /**
  * Oss相关操作接口
  */
-//@CrossOrigin
-//@RestController
-//@Api(tags = "OssController", description = "Oss管理")
-//@RequestMapping("/aliyun/oss")
+@CrossOrigin
+@RestController
+@Api(tags = "OssController", description = "Oss管理")
+@RequestMapping("/aliyun/oss")
 public class OssController {
     @Autowired
     private OssCompent ossCompent;

@@ -1,7 +1,9 @@
 package per.zzch.gmall.cms.service;
 
-import per.zzch.gmall.cms.entity.PrefrenceAreaProductRelation;
 import com.baomidou.mybatisplus.extension.service.IService;
+import per.zzch.gmall.cms.entity.PrefrenceAreaProductRelation;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface PrefrenceAreaProductRelationService extends IService<PrefrenceAreaProductRelation> {
 
+    /**
+     * 根据产品id获取关系
+     *
+     * @param id
+     * @return
+     */
+    List<PrefrenceAreaProductRelation> listByProductId(Long id);
 }

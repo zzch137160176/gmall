@@ -7,6 +7,7 @@ import com.aliyun.oss.model.PolicyConditions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import per.zzch.gmall.to.OssPolicyResult;
 
@@ -17,7 +18,7 @@ import java.util.Date;
  * Created by atguigu 5/17.
  */
 @Slf4j
-//@Service
+@Service
 public class OssCompent {
 
     @Value("${aliyun.oss.policy.expire}")
@@ -30,6 +31,11 @@ public class OssCompent {
     private String ALIYUN_OSS_ENDPOINT;
     @Value("${aliyun.oss.dir.prefix}")
     private String ALIYUN_OSS_DIR_PREFIX;
+    @Value("${aliyun.oss.accessKeyId}")
+    private String ALIYUN_OSS_ACCESS_KEY_ID;
+    @Value("${aliyun.oss.accessKeySecret}")
+    private String ALIYUN_OSS_ACCESS_KEY_SECRET;
+
 
     @Autowired
     private OSSClient ossClient;
@@ -69,4 +75,8 @@ public class OssCompent {
         return result;
     }
 
+    @Bean
+    public OSSClient ossClient() {
+        return new OSSClient(ALIYUN_OSS_ENDPOINT, ALIYUN_OSS_ACCESS_KEY_ID, ALIYUN_OSS_ACCESS_KEY_SECRET);
+    }
 }

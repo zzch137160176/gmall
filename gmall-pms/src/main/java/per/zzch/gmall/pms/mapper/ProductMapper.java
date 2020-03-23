@@ -2,6 +2,7 @@ package per.zzch.gmall.pms.mapper;
 
 import per.zzch.gmall.pms.entity.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import per.zzch.gmall.vo.product.PmsProductParam;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ProductMapper extends BaseMapper<Product> {
 
+    PmsProductParam selectPmsProductParamById(Long id);
 }
